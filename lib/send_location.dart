@@ -4,6 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:algo_app_proj/main.dart';
 
+/*
+
+This is the SendLocation screen which allows the user to edit thier account information,
+add a description and send the data to a supplied web service.
+If the name, user ID, or description is not supplied or the data is entered in the
+incorrect format an error pop-up will be displayed, informing the user that there
+has been an error. If the sending of data is a success, a success pop-up will be displayed,
+informing the user that the sending of data was a success and displaying the latitude
+and longitude of the devices location.
+
+*/
+
 String latitude = "";
 String longitude = "";
 
@@ -183,7 +195,14 @@ class SendLocationState extends State<SendLocation> {
   }
 }
 
-//churr g get mah location brudda
+/*
+
+The following method first asks the user for permission to access the devices location
+settings, if the user agrees then it gets the location of the device and sets the
+latitude and longitude variables to this.
+
+*/
+
 getLocation() async {
   //asks the device for permission to use its location
   LocationPermission permission;

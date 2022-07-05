@@ -5,6 +5,15 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+/*
+
+The main file is used for displaying either the Error screen or the home screen.
+If the user is connected to a network the home screen will be displayed allowing
+the user to edit thier account information, add a description and send the data to
+a supplied web service.
+
+*/
+
 late SharedPreferences prefs;
 
 var name = prefs.getString('name');
@@ -14,7 +23,6 @@ var userId = prefs.getString('userId');
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance();
-
   runApp(MyApp());
 }
 
@@ -51,7 +59,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     String line;
-    //switch statement checking if mobile data or wifi is turned on
     switch (_source.keys.toList()[0]) {
       case ConnectivityResult.mobile:
         line = 'Mobile: Online';
@@ -64,7 +71,6 @@ class _HomePageState extends State<HomePage> {
         line = 'Offline';
     }
 
-    //returns the main scaffold of the entire app
     return Container(
       constraints: BoxConstraints.expand(),
       decoration: const BoxDecoration(
@@ -94,13 +100,23 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  //used for disposing of the _connectivity variable
   @override
   void dispose() {
     _connectivity.disposeStream();
     super.dispose();
   }
 }
+
+/*
+
+The following class is constantly listening for changes to the network (Wi-fi or mobile data).
+If the user is not connected to a network on load of the application this method will return
+an error, informing the user that they need to connect to a network.
+If at any time during the runtime of the application the user loses connection, this class will
+be listening to this loss in connection and the user will be redirected to a screen which will
+inform the user to connect to a network.
+
+*/
 
 class MyConnectivity {
   MyConnectivity._();
@@ -132,6 +148,5 @@ class MyConnectivity {
     _controller.sink.add({result: isOnline});
   }
 
-  //method used for disposing of the controller
   void disposeStream() => _controller.close();
 }

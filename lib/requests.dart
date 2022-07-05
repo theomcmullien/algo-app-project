@@ -2,6 +2,19 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:algo_app_proj/send_location.dart';
 
+/*
+
+The following Future method is used to send a post request to the following server/ip:
+http://developer.kensnz.com/api/addlocdata
+All data sent to the server is first put into a map which will comprise of the
+following:
+userid - this is the userid set my the user on the edit_info screen.
+latitude - this is generated using the location of the device in the getLocation method.
+longitude - this is generated using the location of the device in the getLocation method.
+description - this is supplied by the user to give a description to the specific coord being sent.
+
+*/
+
 HttpClient client = new HttpClient();
 var ip = "http://developer.kensnz.com/api/addlocdata";
 String code = "";

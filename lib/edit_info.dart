@@ -2,6 +2,14 @@ import 'package:algo_app_proj/main.dart';
 import 'package:flutter/material.dart';
 import 'package:algo_app_proj/send_location.dart';
 
+/*
+
+This is the EditInfo screen where the user can enter/edit both their name and user ID.
+Shared Preferences is being used to store this data within the phones storage so
+that each time the user loads the mobile app the name and user ID will remain saved.
+
+*/
+
 class EditInfo extends StatefulWidget {
   @override
   EditInfoState createState() => EditInfoState();
