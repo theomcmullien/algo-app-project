@@ -3,9 +3,20 @@ import 'dart:io';
 import 'package:algo_app_proj/send_location.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+late SharedPreferences prefs;
+
+var name = prefs.getString('name');
+var userId = prefs.getString('userId');
 
 //main method used for initial startup of app
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  prefs = await SharedPreferences.getInstance();
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override

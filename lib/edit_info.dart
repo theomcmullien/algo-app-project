@@ -15,8 +15,8 @@ class EditInfoState extends State<EditInfo> {
   //sets the initial state of the name and userid controllers to the stored name and uderid
   @override
   void initState() {
-    nameController.text = name;
-    userIdController.text = userId;
+    name == null ? name = "Not Set" : nameController.text = name!;
+    userId == null ? userId = "Not Set" : userIdController.text = userId!;
     return super.initState();
   }
 
@@ -111,6 +111,8 @@ class EditInfoState extends State<EditInfo> {
                       //to their corresponding variables, then popping the screen, navigating
                       //back to the home screen
                       onPressed: () {
+                        prefs.setString("name", nameController.text);
+                        prefs.setString("userId", userIdController.text);
                         name = nameController.text;
                         userId = userIdController.text;
                         Navigator.pop(context);

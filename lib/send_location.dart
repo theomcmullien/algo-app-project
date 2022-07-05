@@ -2,12 +2,10 @@ import 'package:algo_app_proj/edit_info.dart';
 import 'package:algo_app_proj/requests.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:algo_app_proj/main.dart';
 
 String latitude = "";
 String longitude = "";
-
-String name = "";
-String userId = "";
 
 class SendLocation extends StatefulWidget {
   @override
@@ -155,8 +153,8 @@ class SendLocationState extends State<SendLocation> {
                   await getLocation();
                   //tries to post all data
                   await postAllData(
-                    name,
-                    userId,
+                    name!,
+                    userId!,
                     descriptionController.text,
                   );
                   //checks if post was a success or fail
